@@ -24,6 +24,7 @@ def message(payload):
     if user_id != BOT_ID:
         client.chat_postMessage(text=f"You said {text}", channel=channel_id)
 
+# /weather is a slash command created in the bot. It can be used as /weather pune for example.
 @app.route('/weather', methods=['POST'])
 def weather():
     data = request.form
