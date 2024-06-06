@@ -32,6 +32,5 @@ def weather():
     return Response(f"The current weather in {location} is 24 degrees", mimetype='text/plain'), 200
 
 
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
