@@ -2,7 +2,7 @@ import slack
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from flask import Flask
+from flask import Flask,request, Response
 from slackeventsapi import SlackEventAdapter
 
 env_path = Path('.') / '.env'
@@ -23,6 +23,13 @@ def message(payload):
     text = event.get('text')
     if user_id != BOT_ID:
         client.chat_postMessage(text=f"You said {text}", channel=channel_id)
+
+@app.route('/weather', methods=['POST'])
+def weather():
+    data = request.form
+    print(data['text'])
+    return Response("The current weather is 24 degrees", mimetype='text/plain'), 200
+
 
 
 if __name__ == "__main__":
