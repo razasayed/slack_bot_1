@@ -2,7 +2,7 @@ import slack
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from flask import Flask,request, Response
+from flask import Flask, request, Response
 from slackeventsapi import SlackEventAdapter
 
 env_path = Path('.') / '.env'
@@ -14,6 +14,7 @@ slack_event_adapter = SlackEventAdapter(os.environ["SIGNING_SECRET"], '/slack/ev
 client = slack.WebClient(token=os.environ["SLACK_TOKEN"])
 BOT_ID = client.api_call("auth.test")["user_id"]
 
+
 @slack_event_adapter.on('message')
 def message(payload):
     print(payload)
@@ -24,8 +25,9 @@ def message(payload):
     if user_id != BOT_ID:
         client.chat_postMessage(text=f"You said {text}", channel=channel_id)
 
+
 # /weather is a slash command created in the bot. It can be used as /weather pune for example.
-@app.route("/weather", methods=['POST'])
+@app.route("/weather", methods=["POST"])
 def weather():
     data = request.form
     location = data["text"]
