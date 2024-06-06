@@ -27,8 +27,8 @@ def message(payload):
 @app.route('/weather', methods=['POST'])
 def weather():
     data = request.form
-    print(data['text'])
-    return Response("The current weather is 24 degrees", mimetype='text/plain'), 200
+    location = data["text"]
+    return Response(f"The current weather in {location} is 24 degrees", mimetype='text/plain'), 200
 
 
 
