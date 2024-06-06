@@ -1,4 +1,6 @@
+```
 pip install slackclient python-dotenv Flask slackeventsapi
+```
 
 Put the following in a .env file in the root of the project
 
