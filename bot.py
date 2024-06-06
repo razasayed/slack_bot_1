@@ -15,7 +15,7 @@ client = slack.WebClient(token=os.environ["SLACK_TOKEN"])
 BOT_ID = client.api_call("auth.test")["user_id"]
 
 
-@slack_event_adapter.on('message')
+@slack_event_adapter.on("message")
 def message(payload):
     print(payload)
     event = payload.get("event", {})
