@@ -33,6 +33,16 @@ def weather():
     location = data["text"]
     return Response(f"The current weather in {location} is 24 degrees", mimetype="text/plain"), 200
 
+@app.route("/confluence", methods=["POST"])
+def confluence():
+    data = request.form
+    question = data["text"]
+    if question == "what is ensemble":
+        return Response(f"Arkose Ensemble is a framework described as a substrate for developing advanced modular components for detecting telltales and managing traffic pressure. It enables multiple components to integrate seamlessly across a platform and allows for greater transparency in data transfers between components. It is part of the Arkose Labs system that focuses on automation, migration work, new feature development, bug fixing, performance optimization, and reliability.
+", mimetype="text/plain"), 200
+    elif question == "what are telltales":
+        return Response(f"Telltales are repeated patterns within traffic that are used to identify 'bad' actors. They are created either by systems (AI/computer-generated) or by a SOC team manually to identify malicious traffic and take action against it. Telltales are rules-based systems that leverage information on a session to validate whether a client matches any existing rules and then take actions based on that information.", mimetype="text/plain"), 200
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", port=5001, debug=True)
